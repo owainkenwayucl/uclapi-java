@@ -9,6 +9,7 @@ import java.net.URLConnection;
 import java.net.URL;
 import java.io.InputStream;
 import java.util.Scanner;
+import java.util.Hashtable;
 
 public class UCLApiConnection {
 
@@ -35,10 +36,15 @@ public class UCLApiConnection {
      * TODO: Redefine query so that it takes a list of parameters (a map?) instead of a String.
      *
      * @param Endpoint The URL endpoint (e.g. roombookings/bookings)
-     * @param query The query to send.
+     * @param Parameters The parameters to query with.
      * @return A string containing the JSON response.
      */
-    public String queryAPI(String Endpoint, String query) {
+    public String queryAPI(String Endpoint, Hashtable<String, String> Parameters) {
+        String query = "";
+        for (String key : Parameters.keySet()) {
+            String value = (String) Parameters.get(key);
+            query = new String(query + "&" + key + "=" + value);
+        }
         String url = new String(UCLApiEndpoint + Endpoint + "?token=" + APIKey + query);
 		String charset = "UTF-8";
 		try {
