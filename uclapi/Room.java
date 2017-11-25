@@ -10,6 +10,7 @@ package uclapi;
     private String roomname;
     private String roomid;
     private String siteid;
+    private String sitename;
     private int capacity;
     private String classification;
     private boolean automated;
@@ -24,6 +25,7 @@ package uclapi;
         this.roomname = "";
         this.roomid = "";
         this.siteid = "";
+        this.sitename = "";
         this.capacity = 0;
         this.classification = "";
         this.automated = false;
@@ -50,7 +52,7 @@ package uclapi;
 
     /**
      * Set room id.
-     * @param id the new name of the room.
+     * @param id the new id of the room.
      */
     public void setRoomid(String id) {
         this.roomid = new String(id);
@@ -63,4 +65,69 @@ package uclapi;
     public String getRoomid() {
         return new String(this.roomid);
     }
+
+    /**
+     * Set site id.
+     * @param id the new id of the site.
+     */
+    public void setSiteid(String id) {
+        this.siteid = new String(id);
+    }
+
+    /**
+     * Get site id.
+     * @return the id of the site.
+     */
+    public String getSiteid() {
+        return new String(this.siteid);
+    }
+
+    /**
+     * Set site name.
+     * @param name the new name of the site.
+     */
+    public void setSitename(String name) {
+        this.sitename = new String(name);
+    }
+
+    /**
+     * Get site id.
+     * @return the name of the site.
+     */
+    public String getSitename() {
+        return new String(this.sitename);
+    }
+
+    /**
+     * Set capacity.
+     * @param capacity the new capacity of the room..
+     */
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    /**
+     * Get capacity.
+     * @return the capactiy of the site.
+     */
+    public int getCapacity() {
+        return this.capacity;
+    }
+
+    /**
+     * Set classification
+     * @param classification the new classification of the room.
+     */
+    public void setClassification(String classification) {
+        this.classification = new String(classification);
+    }
+
+    /**
+     * Get classificaton.
+     * @return the classification of the room.
+     */
+    public String getClassification() {
+        return new String(this.classification);
+    }
+    
  }
