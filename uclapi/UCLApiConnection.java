@@ -32,7 +32,7 @@ public class UCLApiConnection {
     }
 
     /**
-     * Perform a generic API query on our.
+     * Perform a generic API query on our connection.
      *
      * @param Endpoint The URL endpoint (e.g. roombookings/bookings)
      * @param Parameters The parameters to query with.
@@ -68,7 +68,7 @@ public class UCLApiConnection {
             }
 
         } catch(Exception e) {
-            // Annoyingly we don't get our Error resonse, just a 403 exception which is less helpful.
+            // Annoyingly we don't get our Error response, just a 403 exception which is less helpful.
             System.err.println(e.toString());
             System.exit(1);
         }
