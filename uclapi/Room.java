@@ -13,7 +13,7 @@ import java.lang.Math;
     private String roomid;
     private String siteid;
     private String sitename;
-    private int capacity;
+    private long capacity;
     private String classification;
     private String automated;
     private double latitude;
@@ -47,7 +47,7 @@ import java.lang.Math;
                         + "Room id: " + this.roomid + "\n"
                         + "Site id: " + this.siteid + "\n"
                         + "Site name: " + this.sitename + "\n"
-                        + "Capacity: " + Integer.toString(this.capacity) + "\n"
+                        + "Capacity: " + Long.toString(this.capacity) + "\n"
                         + "Classification: " + this.classification + "\n"
                         + "Automated: " + this.automated + "\n"
                         + "Location:\n"
@@ -129,7 +129,7 @@ import java.lang.Math;
      * Set capacity.
      * @param capacity the new capacity of the room..
      */
-    public void setCapacity(int capacity) {
+    public void setCapacity(long capacity) {
         this.capacity = capacity;
     }
 
@@ -137,7 +137,7 @@ import java.lang.Math;
      * Get capacity.
      * @return the capactiy of the site.
      */
-    public int getCapacity() {
+    public long getCapacity() {
         return this.capacity;
     }
 
