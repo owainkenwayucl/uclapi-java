@@ -15,7 +15,7 @@ import java.lang.Math;
     private String sitename;
     private int capacity;
     private String classification;
-    private boolean automated;
+    private String automated;
     private double latitude;
     private double longitude;
     private String[] address;
@@ -32,7 +32,7 @@ import java.lang.Math;
         this.sitename = "";
         this.capacity = 0;
         this.classification = "";
-        this.automated = false;
+        this.automated = "";
         this.latitude = 0.0d;
         this.longitude = 0.0d;
         this.address = new String[address_size];
@@ -49,7 +49,7 @@ import java.lang.Math;
                         + "Site name: " + this.sitename + "\n"
                         + "Capacity: " + Integer.toString(this.capacity) + "\n"
                         + "Classification: " + this.classification + "\n"
-                        + "Automated: " + Boolean.toString(this.automated) + "\n"
+                        + "Automated: " + this.automated + "\n"
                         + "Location:\n"
                         + "  Latitude: " + Double.toString(this.latitude) + "\n"
                         + "  Longitude: " + Double.toString(this.longitude) + "\n"
@@ -161,16 +161,16 @@ import java.lang.Math;
      * Set automation.
      * @param automation the new state automation.
      */
-    public void setAutomation(boolean automation) {
-        this.automated = automation;
+    public void setAutomation(String automation) {
+        this.automated = new String(automation);
     }
 
     /**
      * Get automation.
      * @return whether the room is automated or not.
      */
-    public boolean getAutomation() {
-        return this.automated;
+    public String getAutomation() {
+        return new String(this.automated);
     }
 
     /**
