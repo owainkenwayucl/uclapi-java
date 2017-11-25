@@ -33,6 +33,7 @@ public class UCLApiConnection {
      *
      * @param Endpoint The URL endpoint (e.g. roombookings/bookings)
      * @param query The query to send.
+     * @return A string containing the JSON response.
      */
     public String queryAPI(String Endpoint, String query) {
         String url = new String(UCLApiEndpoint + Endpoint + "?token=" + APIKey + query);
