@@ -25,9 +25,14 @@ Installation:
 
 Clone the archive and run `make`.
 
+Add the directory to your java class path.
+
 You can then write a simple example program to do a query, as per the examples on the UCL API website:
 
 ```java
+// UCL API example in Java
+// Owain Kenway
+
 import uclapi.UCLApiConnection;
 import java.util.Hashtable;
 
@@ -56,3 +61,34 @@ $ java test <insert your API key here>
 ```
 
 If all things are working this should print out a JSON file with the room  bookings for the date above.
+
+### Clojure
+
+Since Clojure can access Java classes, you also call this library from Clojure.  The following code does essentially the same as the above java code.
+
+```clojure
+; UCL API example in Clojure
+; Owain Kenway
+
+(if (= (count *command-line-args*) 1)
+  (def token (first *command-line-args*))
+  ((.println System/err "Run with API key as argument.")(System/exit 1))
+)
+
+(import uclapi.UCLApiConnection)
+(import java.util.Hashtable)
+
+(def conn (UCLApiConnection. token))
+(def params (Hashtable.))
+(.put params "date" "20171125")
+(.put params "results_per_page" "1")
+
+(def response (.queryAPI conn UCLApiConnection/RoomBookingsEP params))
+(println response)
+```
+
+You can then run this code with:
+
+```none
+$ clojure test.clj <insert your API key here>
+```
