@@ -4,6 +4,8 @@
  */
 package uclapi;
 
+import java.lang.Math;
+
  public class Room {
      
     // Extracted from JSON example.
@@ -18,6 +20,8 @@ package uclapi;
     private double longitude;
     private String[] address;
 
+    private final static int address_size = 4;
+
     /**
      * Constructor to create a blank room.
      */
@@ -31,7 +35,7 @@ package uclapi;
         this.automated = false;
         this.latitude = 0.0d;
         this.longitude = 0.0d;
-        this.address = new String[4];
+        this.address = new String[address_size];
     }
 
     /**
@@ -144,6 +148,54 @@ package uclapi;
      */
     public boolean getAutomation() {
         return this.automated;
+    }
+
+    /**
+     * Set co-ordinates..
+     * @param latitude the new latitude.
+     * @param longitude the new longitude..
+     */
+    public void setCoordinates(double latitude, double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    /**
+     * Get latitude.
+     * @return latitude.
+     */
+    public double getLatitude() {
+        return this.latitude;
     }    
-    
- }
+
+    /**
+     * Get longitude.
+     * @return longitude.
+     */
+    public double getLongitude() {
+        return this.longitude;
+    }
+
+    /**
+     * Set address
+     * @param address - String array of size address_size.
+     */
+    public void setAddress(String[] address) {
+        int inlength = Math.min(address_size, address.length);
+        for (int i = 0; i < inlength; i++) {
+            this.address[i] = new String(address[i]);
+        }
+    }
+
+    /**
+     * Get address.
+     * @return the address
+     */
+    public String[] getAddress() {
+        String[] retval = new String[address_size];
+        for (int i = 0; i < address_size; i++) {
+            retval[i] = new String(this.address[i]);
+        }
+        return retval;
+    }
+}
