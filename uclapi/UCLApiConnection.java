@@ -18,6 +18,9 @@ public class UCLApiConnection {
     // URL base, public so for testing purpose you can modify it but generally don't!
     public String UCLApiEndpoint = new String("https://uclapi.com/");
 
+    // Constants (e.g. endpoints)
+    public static final String RoomBookingsEP = "roombookings/bookings";
+
     /**
      * Basic constructor, sets API key for this connection.
      * 
@@ -44,12 +47,10 @@ public class UCLApiConnection {
 
 			InputStream response = conn.getInputStream();
 
-
 			try (Scanner rReader = new Scanner(response)) {
 				String rBody = rReader.useDelimiter("\\A").next();
 				return rBody;
 			}
-
 
 		} catch(Exception e) {
 			System.err.println(e.toString());
