@@ -41,8 +41,8 @@ public class UCLApiConnection {
     public String queryAPI(String Endpoint, Hashtable<String, String> Parameters) {
         String query = "";
         for (String key : Parameters.keySet()) {
-        String value = (String) Parameters.get(key);
-        query = new String(query + "&" + key + "=" + value);
+            String value = (String) Parameters.get(key);
+            query = new String(query + "&" + key + "=" + value);
         }
         String url = new String(UCLApiEndpoint + Endpoint + "?token=" + APIKey + query);
         String charset = "UTF-8";
