@@ -1,7 +1,10 @@
 /**
  * This class represents a connection to the UCL API.
- * Owain Kenway, November 2017
+ * @author Owain Kenway
  */
+
+package uclapi;
+
 public class UCLApiConnection {
 
     // Our API key
