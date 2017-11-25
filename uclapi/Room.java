@@ -6,6 +6,9 @@ package uclapi;
 
 import java.lang.Math;
 
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+
  public class Room {
      
     // Extracted from JSON example.
@@ -36,6 +39,39 @@ import java.lang.Math;
         this.latitude = 0.0d;
         this.longitude = 0.0d;
         this.address = new String[address_size];
+    }
+
+    /**
+     * Use JSON.simple to create a room from a JSONObject.
+     * NOTE: Assumes the object IS a room!
+     */
+    public Room(JSONObject jsonroom) {
+        try {
+            JSONObject jlocation = (JSONObject)jsonroom.get("location");
+            JSONObject jcoordinates = (JSONObject)jlocation.get("coordinates");
+            JSONArray jaddress = (JSONArray)jlocation.get("address");
+
+            this.roomname = new String(((String)jsonroom.get("roomname")));
+            this.roomid = new String(((String)jsonroom.get("roomid")));
+            this.siteid = new String(((String)jsonroom.get("siteid")));
+            this.sitename = new String(((String)jsonroom.get("sitename")));
+            this.capacity = ((long)jsonroom.get("capacity"));
+            this.classification = new String(((String)jsonroom.get("classification")));
+            this.automated = new String(((String)jsonroom.get("automated")));
+
+            this.latitude = Double.parseDouble((String)jcoordinates.get("lat"));
+            this.longitude = Double.parseDouble((String)jcoordinates.get("lng"));
+
+            this.address = new String[address_size];
+            for (int i = 0; i < address_size; i++) {
+                this.address[i] = new String((String)jaddress.get(i));
+            }
+
+        } catch(Exception e) {
+            System.err.println(e.toString());
+            System.exit(2);
+        }
+
     }
 
     /**
