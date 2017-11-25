@@ -33,7 +33,6 @@ public class UCLApiConnection {
 
     /**
      * Perform a generic API query on our.
-     * TODO: Redefine query so that it takes a list of parameters (a map?) instead of a String.
      *
      * @param Endpoint The URL endpoint (e.g. roombookings/bookings)
      * @param Parameters The parameters to query with.
