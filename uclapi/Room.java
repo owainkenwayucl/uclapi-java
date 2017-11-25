@@ -129,5 +129,21 @@ package uclapi;
     public String getClassification() {
         return new String(this.classification);
     }
+
+    /**
+     * Set automation.
+     * @param automation the new state automation.
+     */
+    public void setAutomation(boolean automation) {
+        this.automated = automation;
+    }
+
+    /**
+     * Get automation.
+     * @return whether the room is automated or not.
+     */
+    public boolean getAutomation() {
+        return this.automated;
+    }    
     
  }
