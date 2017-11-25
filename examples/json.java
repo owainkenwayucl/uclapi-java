@@ -27,7 +27,7 @@ public class json {
             params.put("results_per_page", "1");
             String response = conn.queryAPI(UCLApiConnection.RoomRoomsEP, params);
 
-            // Convert it into an arry of Room objects and print out.
+            // Convert it into Room objects and print out.
             try {
                 JSONParser p = new JSONParser();
                 JSONObject responseObject = (JSONObject)p.parse(response);
