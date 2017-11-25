@@ -59,7 +59,7 @@ public class UCLApiConnection {
             // Open our connection.
             URLConnection conn = new URL(url).openConnection();
             conn.setRequestProperty("Accept-Charset", charset);
-
+            conn.addRequestProperty("User-Agent", "Owain's UCL API wrapper for Java");
             InputStream response = conn.getInputStream();
 
             // Pull data out and return it.
