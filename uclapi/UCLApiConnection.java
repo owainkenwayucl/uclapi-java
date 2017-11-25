@@ -28,7 +28,7 @@ public class UCLApiConnection {
      * @param key The UCL API key for this connection.
      */
     public UCLApiConnection(String key) {
-	this.APIKey = new String(key);
+        this.APIKey = new String(key);
     }
 
     /**
@@ -41,26 +41,26 @@ public class UCLApiConnection {
     public String queryAPI(String Endpoint, Hashtable<String, String> Parameters) {
         String query = "";
         for (String key : Parameters.keySet()) {
-		String value = (String) Parameters.get(key);
-		query = new String(query + "&" + key + "=" + value);
+        String value = (String) Parameters.get(key);
+        query = new String(query + "&" + key + "=" + value);
         }
         String url = new String(UCLApiEndpoint + Endpoint + "?token=" + APIKey + query);
-	String charset = "UTF-8";
-	try {
-		URLConnection conn = new URL(url).openConnection();
-		conn.setRequestProperty("Accept-Charset", charset);
+        String charset = "UTF-8";
+        try {
+            URLConnection conn = new URL(url).openConnection();
+            conn.setRequestProperty("Accept-Charset", charset);
 
-		InputStream response = conn.getInputStream();
+            InputStream response = conn.getInputStream();
 
-		try (Scanner rReader = new Scanner(response)) {
-			String rBody = rReader.useDelimiter("\\A").next();
-			return rBody;
-		}
+            try (Scanner rReader = new Scanner(response)) {
+                String rBody = rReader.useDelimiter("\\A").next();
+                return rBody;
+            }
 
-	} catch(Exception e) {
-		System.err.println(e.toString());
-		System.exit(1);
-	}
+        } catch(Exception e) {
+            System.err.println(e.toString());
+            System.exit(1);
+        }
         return new String("FAIL");
     }
 
