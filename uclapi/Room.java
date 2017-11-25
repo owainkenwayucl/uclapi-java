@@ -39,6 +39,29 @@ import java.lang.Math;
     }
 
     /**
+     * @returns a string representation of the room.
+     */
+    public String toString() {
+        String retval = "";
+        retval = retval + "Name: " + this.roomname + "\n"
+                        + "Room id: " + this.roomid + "\n"
+                        + "Site id: " + this.siteid + "\n"
+                        + "Site name: " + this.sitename + "\n"
+                        + "Capacity: " + Integer.toString(this.capacity) + "\n"
+                        + "Classification: " + this.classification + "\n"
+                        + "Automated: " + Boolean.toString(this.automated) + "\n"
+                        + "Location:\n"
+                        + "  Latitude: " + Double.toString(this.latitude) + "\n"
+                        + "  Longitude: " + Double.toString(this.longitude) + "\n"
+                        + "Address:\n";
+        for (int i = 0; i < address_size; i++) {
+            retval = retval + "  " + this.address[i] + "\n";
+        }
+        return retval;
+    }
+
+
+    /**
      * Set room name.
      * @param name the new name of the room.
      */
