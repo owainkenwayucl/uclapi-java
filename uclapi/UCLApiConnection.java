@@ -27,6 +27,13 @@ public class UCLApiConnection {
         this.APIKey = new String(key);
     }
 
+    /**
+     * Perform a generic API query on our.
+     * TODO: Redefine query so that it takes a list of parameters (a map?) instead of a String.
+     *
+     * @param Endpoint The URL endpoint (e.g. roombookings/bookings)
+     * @param query The query to send.
+     */
     public String queryAPI(String Endpoint, String query) {
         String url = new String(UCLApiEndpoint + Endpoint + "?token=" + APIKey + query);
 		String charset = "UTF-8";
