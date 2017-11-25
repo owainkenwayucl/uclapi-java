@@ -19,7 +19,7 @@ Installation:
 
 ### Requirements:
 
-* Java JDK (test on 8, should work on 7)
+* Java JDK (tested on 8, should work on 7)
 * GNU Make (automated build)
 * An API key (instructions on [UCL-API](https://uclapi.com/) website)
 
