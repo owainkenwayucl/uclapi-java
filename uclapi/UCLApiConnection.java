@@ -21,6 +21,7 @@ public class UCLApiConnection {
 
     // Constants (e.g. endpoints)
     public static final String RoomBookingsEP = "roombookings/bookings";
+    public static final String RoomRoomsEP = "roombookings/rooms";
 
     /**
      * Basic constructor, sets API key for this connection.
