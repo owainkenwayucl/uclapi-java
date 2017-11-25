@@ -39,29 +39,42 @@ public class UCLApiConnection {
      * @return A string containing the JSON response.
      */
     public String queryAPI(String Endpoint, Hashtable<String, String> Parameters) {
+
+        // Unpack the Hashtable of parameters into a query string.
         String query = "";
         for (String key : Parameters.keySet()) {
             String value = (String) Parameters.get(key);
             query = new String(query + "&" + key + "=" + value);
         }
+
+        // Construct a URL out of base url, our endpoint, our API key and the query.
         String url = new String(UCLApiEndpoint + Endpoint + "?token=" + APIKey + query);
-        String charset = "UTF-8";
+
+        // It's not clear this is necessary but I had enough encoding horrors at #hackbentham...
+        String charset = "UTF-8"; 
+
         try {
+
+            // Open our connection.
             URLConnection conn = new URL(url).openConnection();
             conn.setRequestProperty("Accept-Charset", charset);
 
             InputStream response = conn.getInputStream();
 
+            // Pull data out and return it.
             try (Scanner rReader = new Scanner(response)) {
                 String rBody = rReader.useDelimiter("\\A").next();
                 return rBody;
             }
 
         } catch(Exception e) {
+            // Annoyingly we don't get our Error resonse, just a 403 exception which is less helpful.
             System.err.println(e.toString());
             System.exit(1);
         }
-        return new String("FAIL");
+
+        // If we get here something has gone very wrong...
+        return "";
     }
 
 }
