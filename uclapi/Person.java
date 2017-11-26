@@ -57,7 +57,6 @@ public class Person {
         params.put("query", query);
         String response = conn.queryAPI(UCLApiConnection.SearchPeopleEP, params);
 
-        // Convert it into Person objects and print out.
         try {
             JSONParser p = new JSONParser();
             JSONObject responseObject = (JSONObject)p.parse(response);
