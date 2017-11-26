@@ -22,6 +22,7 @@ Installation:
 * Java JDK (tested on 8, should work on 7)
 * GNU Make (automated build)
 * An API key (instructions on [UCL-API](https://uclapi.com/) website)
+* JSON.simple (https://code.google.com/archive/p/json-simple/ or Ubuntu package `libjson-simple-java`) to parse JSON objects.  If you only want to use UCLApiConnection you don't need this, but will need to build that class manually in the normal way.
 
 Clone the archive and run `make`.
 
