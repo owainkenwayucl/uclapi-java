@@ -76,7 +76,7 @@ import org.json.simple.JSONArray;
     }
 
     /**
-     * @returns a string representation of the room.
+     * @return a string representation of the room.
      */
     public String toString() {
         String retval = "";
