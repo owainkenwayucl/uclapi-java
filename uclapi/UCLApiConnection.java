@@ -45,7 +45,7 @@ public class UCLApiConnection {
         // Unpack the Hashtable of parameters into a query string.
         String query = "";
         for (String key : Parameters.keySet()) {
-            String value = (String) Parameters.get(key);
+            String value = (String) Parameters.get(key).replace(" ", "+");
             query = new String(query + "&" + key + "=" + value);
         }
 
