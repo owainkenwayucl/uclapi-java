@@ -5,9 +5,12 @@
 package uclapi;
 
 import java.lang.Math;
+import java.util.Hashtable;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
+import org.json.simple.parser.ParseException;
+import org.json.simple.parser.JSONParser;
 
 public class Person {
 
@@ -41,6 +44,40 @@ public class Person {
             System.err.println(e.toString());
             System.exit(2);
         }
+    }
+
+    /**
+     * Perform a query on a given UCL API connection and return an array of people.
+     * @param conn UCLApiConnection
+     * @param query Query string
+     * @return Array of people
+     */
+    public static Person[] searchAPI(UCLApiConnection conn, String query) {
+        Hashtable<String, String> params = new Hashtable<String, String>();
+        params.put("query", query);
+        String response = conn.queryAPI(UCLApiConnection.SearchPeopleEP, params);
+
+        // Convert it into Person objects and print out.
+        try {
+            JSONParser p = new JSONParser();
+            JSONObject responseObject = (JSONObject)p.parse(response);
+
+            JSONArray people = (JSONArray)responseObject.get("people");
+            int nPeople = people.size();
+            Person[] retval = new Person[nPeople];
+
+            for (int i = 0; i < nPeople; i++) {
+                JSONObject jperson = (JSONObject)people.get(i);
+
+                retval[i] = new Person(jperson);
+
+            }
+            return retval;
+        } catch (Exception e){
+            System.err.println(e.toString());
+            System.exit(5);
+        }
+        return new Person[0];
     }
 
     /**
