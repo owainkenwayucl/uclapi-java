@@ -35,7 +35,7 @@ public class Person {
         try {
             this.name = new String(((String)jsonperson.get("name")));
             this.status = new String(((String)jsonperson.get("status")));
-            this.department = new String(((String)jsonperson.get("departmet")));
+            this.department = new String(((String)jsonperson.get("department")));
             this.email = new String(((String)jsonperson.get("email")));
         } catch(Exception e) {
             System.err.println(e.toString());
