@@ -155,7 +155,7 @@ import org.json.simple.JSONArray;
     }
 
     /**
-     * Get site id.
+     * Get site name.
      * @return the name of the site.
      */
     public String getSitename() {
