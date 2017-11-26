@@ -10,7 +10,7 @@ import uclapi.Room;
 
 import java.util.Hashtable;
 
-public class json {
+public class searchrooms {
     public static void main(String[] args) {
         if (args.length == 2) {
 
