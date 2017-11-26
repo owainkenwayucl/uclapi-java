@@ -4,12 +4,17 @@
  */
 package uclapi;
 
+import uclapi.UCLApiConnection;
+
 import java.lang.Math;
+import java.util.Hashtable;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
+import org.json.simple.parser.ParseException;
+import org.json.simple.parser.JSONParser;
 
- public class Room {
+public class Room {
      
     // Extracted from JSON example.
     private String roomname;
@@ -75,6 +80,38 @@ import org.json.simple.JSONArray;
 
     }
 
+    /**
+     * Perform a query on a given UCL API connection and return an array of rooms.
+     * @param conn UCLApiConnection
+     * @param params hashtable of query parameters
+     * @return Array of Rooms
+     */
+    public static Room[] searchAPI(UCLApiConnection conn, Hashtable<String, String> params) {
+        String response = conn.queryAPI(UCLApiConnection.RoomRoomsEP, params);
+
+        try {
+            JSONParser p = new JSONParser();
+            JSONObject responseObject = (JSONObject)p.parse(response);
+
+            JSONArray rooms = (JSONArray)responseObject.get("rooms");
+            int nRooms = rooms.size();
+            Room[] retval = new Room[nRooms];
+
+            for (int i = 0; i < nRooms; i++) {
+                JSONObject jroom = (JSONObject)rooms.get(i);
+
+                retval[i] = new Room(jroom);
+
+            }
+
+            return retval;
+
+        } catch (Exception e){
+            System.err.println(e.toString());
+            System.exit(5);
+        }
+        return new Room[0];
+    }
     /**
      * @return a string representation of the room.
      */
