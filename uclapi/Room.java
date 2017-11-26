@@ -44,6 +44,7 @@ import org.json.simple.JSONArray;
     /**
      * Use JSON.simple to create a room from a JSONObject.
      * NOTE: Assumes the object IS a room!
+     * @param jsonroom a JSONObject containing a room.
      */
     public Room(JSONObject jsonroom) {
         try {
