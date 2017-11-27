@@ -106,3 +106,8 @@ You can then run this code with:
 ```none
 $ clojure examples/search.clj <insert your API key here> Kenway
 ```
+
+Questions/Comments?
+-------------------
+
+The best way to contact me is on [Twitter](https://twitter.com/owainkenway), although you can open an Issue too.
