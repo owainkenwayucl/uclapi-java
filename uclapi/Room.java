@@ -87,7 +87,18 @@ public class Room {
      * @return Array of Rooms
      */
     public static Room[] searchAPI(UCLApiConnection conn, Hashtable<String, String> params) {
-        String response = conn.queryAPI(UCLApiConnection.RoomRoomsEP, params);
+        return Room.searchAPI(conn, UCLApiConnection.RoomRoomsEP, params);
+    }
+
+    /**
+     * Perform a query on a given UCL API connection and return an array of rooms.
+     * @param conn UCLApiConnection
+     * @param endpoint the API path
+     * @param params hashtable of query parameters
+     * @return Array of Rooms
+     */
+    public static Room[] searchAPI(UCLApiConnection conn, String endpoint, Hashtable<String, String> params) {
+        String response = conn.queryAPI(endpoint, params);
 
         try {
             JSONParser p = new JSONParser();
