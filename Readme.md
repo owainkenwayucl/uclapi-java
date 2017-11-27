@@ -73,7 +73,7 @@ $ javac examples/search.java
 $ java examples/search <insert your API key here> Kenway
 ```
 
-If all things are working this should print out a JSON file with the room  bookings for the date above.
+If all things are working this should print out a list of people whose name contain "Kenway".
 
 ### Clojure
 
