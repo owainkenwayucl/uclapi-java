@@ -66,8 +66,10 @@ public class UCLApiConnection {
             // Pull data out and return it.
             try (Scanner rReader = new Scanner(response)) {
                 String rBody = rReader.useDelimiter("\\A").next();
+                response.close();
                 return rBody;
             }
+            
 
         } catch(Exception e) {
             // Annoyingly we don't get our Error response, just a 403 exception which is less helpful.
