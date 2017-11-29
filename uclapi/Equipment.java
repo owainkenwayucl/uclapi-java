@@ -85,6 +85,16 @@ public class Equipment {
     }
 
     /**
+     * Perform a query on a given UCL API connection and return an array equipment.
+     * @param conn UCLApiConnection
+     * @param params hashtable of query parameters
+     * @return Array of Equipment
+     */
+    public static Equipment[] searchAPI(UCLApiConnection conn, Hashtable<String, String> params) {
+        return Equipment.searchAPI(conn, UCLApiConnection.RoomEquipmentEP, params);
+    }
+
+    /**
      * @return a string representation of this equipment.
      */
     public String toString() {
