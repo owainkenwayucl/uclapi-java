@@ -32,6 +32,66 @@ public class Equipment {
     }
 
     /**
+     * Use JSON.simple to create a piece of equipment from a JSONObject.
+     * NOTE: Assumes the object IS a piece of equipment!
+     * @param jsonequipment a JSONObject containing equipment.
+     */
+    public Equipment(JSONObject jsonequipment) {
+        try {
+
+            this.type= new String(((String)jsonequipment.get("type")));
+            this.description = new String(((String)jsonequipment.get("description")));
+            this.number= ((long)jsonequipment.get("units"));
+
+        } catch(Exception e) {
+            System.err.println(e.toString());
+            System.exit(2);
+        }
+
+    }
+
+    /**
+     * Perform a query on a given UCL API connection and return an array equipment.
+     * @param conn UCLApiConnection
+     * @param endpoint the API path
+     * @param params hashtable of query parameters
+     * @return Array of Equipment
+     */
+    public static Equipment[] searchAPI(UCLApiConnection conn, String endpoint, Hashtable<String, String> params) {
+        String response = conn.queryAPI(endpoint, params);
+
+        try {
+            JSONParser p = new JSONParser();
+            JSONObject responseObject = (JSONObject)p.parse(response);
+
+            JSONArray equipment = (JSONArray)responseObject.get("equipment");
+            int nEquipment = equipment.size();
+            Equipment[] retval = new Equipment[nEquipment];
+
+            for (int i = 0; i < nEquipment; i++) {
+                JSONObject jeq = (JSONObject)equipment.get(i);
+
+                retval[i] = new Equipment(jeq);
+
+            }
+
+            return retval;
+
+        } catch (Exception e){
+            System.err.println(e.toString());
+            System.exit(5);
+        }
+        return new Equipment[0];
+    }
+
+    /**
+     * @return a string representation of this equipment.
+     */
+    public String toString() {
+        return new String("Type: " + this.type + "\nDescription: " + this.description + "\nNumber: " + Long.toString(this.number) + "\n");
+    }
+
+    /**
      * Set equipment type.
      * @param newType the new type of the equipment.
      */
