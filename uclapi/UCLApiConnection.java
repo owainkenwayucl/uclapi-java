@@ -22,6 +22,7 @@ public class UCLApiConnection {
     // Constants (e.g. endpoints)
     public static final String RoomBookingsEP = "roombookings/bookings";
     public static final String RoomRoomsEP = "roombookings/rooms";
+    public static final String RoomEquipmentEP = "roombooings/equipment";
     public static final String SearchPeopleEP = "search/people";
 
     /**
