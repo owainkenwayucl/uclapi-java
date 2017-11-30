@@ -1,6 +1,9 @@
 # Mucking about directory
 trash/
 
+# Generated documentation
+doc/
+
 # Compiled class file
 *.class
 
