@@ -61,14 +61,29 @@ public class Booking {
             this.siteid = new String(((String)jsonbooking.get("siteid")));
             this.endtime = new String(((String)jsonbooking.get("end_time")));
             this.starttime = new String(((String)jsonbooking.get("start_time")));
-            this.phone = new String(((String)jsonbooking.get("phone")));
-            this.description = new String(((String)jsonbooking.get("description")));
-            this.contact = new String(((String)jsonbooking.get("contact")));
+
+            // These fields appear to be able to be null...
+            try {
+                this.phone = new String(((String)jsonbooking.get("phone")));                
+            } catch (NullPointerException e) {
+                this.phone = "";
+            }
+            try {
+                this.description = new String(((String)jsonbooking.get("description")));
+            } catch (NullPointerException e) {
+                this.description = "";
+            }
+            try {
+                this.contact = new String(((String)jsonbooking.get("contact")));
+            } catch (NullPointerException e) {
+                this.contact = "";
+            }
             this.slotid = ((long)jsonbooking.get("slotid"));            
-            this.weeknumber = Double.parseDouble((String)jsonbooking.get("weeknumber"));
+            this.weeknumber = (double)jsonbooking.get("weeknumber");
 
         } catch(Exception e) {
             System.err.println(e.toString());
+            e.printStackTrace(System.err);
             System.exit(2);
         }
 
@@ -92,13 +107,13 @@ public class Booking {
      * @return Array of bookings
      */
     public static Booking[] searchAPI(UCLApiConnection conn, String endpoint, Hashtable<String, String> params) {
-        String response = conn.queryAPI(endpoint, params);
 
         try {
             boolean cont = true;
             LinkedList<Booking> bookings = new LinkedList<Booking>();
 
-            while (cont) {
+            while (cont == true) {
+                String response = conn.queryAPI(endpoint, params);
                 JSONParser p = new JSONParser();
                 JSONObject responseObject = (JSONObject)p.parse(response);
 
@@ -110,10 +125,16 @@ public class Booking {
                     bookings.add(new Booking((JSONObject)bs.get(i)));
                 }
 
-                cont = Boolean.parseBoolean((String)responseObject.get("next_page_exists"));
-                params.put("page_token",(String)responseObject.get("page_token"));
+                cont = (boolean)responseObject.get("next_page_exists"); 
+            
+                if (cont) {
+                    params.put("page_token",(String)responseObject.get("page_token"));
+
+                }
             }
-            return (Booking[])bookings.toArray();
+
+
+            return bookings.toArray(new Booking[bookings.size()]);
 
         } catch (Exception e){
             System.err.println(e.toString());
