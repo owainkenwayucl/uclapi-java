@@ -35,6 +35,13 @@ public class UCLApiConnection {
     }
 
     /**
+     * Constructor which creates a UCLApiConnection where the key is from $UCLAPIKEY
+     */
+    public UCLApiConnection() {
+        this.APIKey = System.getenv().get("UCLAPIKEY");
+    }
+
+    /**
      * Perform a generic API query on our connection.
      *
      * @param Endpoint The URL endpoint (e.g. roombookings/bookings)
