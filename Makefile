@@ -1,8 +1,15 @@
 JAVAC = javac 
 
-all: uclapi/UCLApiConnection.class uclapi/Room.class uclapi/Person.class uclapi/Equipment.class uclapi/Booking.class
+default: uclapi/UCLApiConnection.class uclapi/Room.class uclapi/Person.class uclapi/Equipment.class uclapi/Booking.class Makefile
+
+all: uclapi/UCLApiConnection.class uclapi/Room.class uclapi/Person.class uclapi/Equipment.class uclapi/Booking.class Makefile jar javadoc
 
 javadoc: doc/index.html
+
+jar: uclapi.jar
+
+uclapi.jar: uclapi/UCLApiConnection.class uclapi/Room.class uclapi/Person.class uclapi/Equipment.class uclapi/Booking.class Makefile
+	jar -cvf uclapi.jar uclapi/*.class
 
 uclapi/UCLApiConnection.class: uclapi/UCLApiConnection.java Makefile
 	$(JAVAC) uclapi/UCLApiConnection.java
@@ -23,4 +30,4 @@ doc/index.html: uclapi/Room.java uclapi/Person.java uclapi/Equipment.java uclapi
 	mkdir -p doc; cd doc; javadoc uclapi
 
 clean:
-	rm -rf uclapi/*.class *.class trash/*.class examples/*.class doc
+	rm -rf uclapi/*.class *.class trash/*.class examples/*.class doc *.jar
