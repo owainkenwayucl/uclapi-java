@@ -5,7 +5,7 @@ This repository contains code for accessing the [UCL API](https://uclapi.com/) u
 
 *(You can find the tagged release from #LearnHack 4.0 [here](https://github.com/owainkenwayucl/uclapi-java/releases/tag/LearnHack4.0))*
 
-This library provides access to and classes to represent objects returned by all the public (i.e. non-OAuth authenticated) UCL API end points.  As well as Java this libary of course works in languages that are hosted in the JVM, for example Clojure, Scala and Jython.
+This library provides access to and classes to represent objects returned by all the public (i.e. non-OAuth authenticated) UCL API end points.  As well as Java this libary of course works in languages that are hosted in the JVM, for example Clojure, Scala or Jython.
 
 Installation:
 ------------
@@ -15,7 +15,7 @@ Installation:
 * Java JDK (tested on 8, should work on 7)
 * GNU Make (automated build)
 * An API key (instructions on [UCL-API](https://uclapi.com/) website)
-* JSON.simple (https://code.google.com/archive/p/json-simple/ or Ubuntu package `libjson-simple-java` to parse JSON objects.  If you only want to use `uclapi.UCLApiConnection` you don't need this, but will need to build that class manually in the normal way.)
+* JSON.simple (https://code.google.com/archive/p/json-simple/ or Ubuntu/Debian package `libjson-simple-java` to parse JSON objects.  If you only want to use `uclapi.UCLApiConnection` you don't need this, but will need to build that class manually in the normal way.)
 
 Clone the repository and run `make`.  By default this builds `.class` files in the `uclapi` directory but you can also build a `.jar` file by running `make jar` and JavaDoc documentation by running `make javadoc` or everything by running `make all`.
 
