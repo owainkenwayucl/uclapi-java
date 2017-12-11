@@ -5,16 +5,7 @@ This repository contains code for accessing the [UCL API](https://uclapi.com/) u
 
 *(You can find the tagged release from #LearnHack 4.0 [here](https://github.com/owainkenwayucl/uclapi-java/releases/tag/LearnHack4.0))*
 
-Plan:
-----
-
-* Basic access to non-private (i.e. no oauth) data (because I don't know anything about oauth from a development perspective).
-
-* *[stretch]* Classes to represent JSON data in Java, parsed by a JSON parser, probably JSON.simple.
-
-* *[stretch]* Example code in Java.
-
-* *[stretch]* Example code in Clojure.
+This library provides access to and classes to represent objects returned by all the public (i.e. non-OAuth authenticated) UCL API end points.  As well as Java this libary of course works in languages that are hosted in the JVM, for example Clojure, Scala and Jython.
 
 Installation:
 ------------
