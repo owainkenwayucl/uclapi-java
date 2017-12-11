@@ -107,6 +107,80 @@ You can then run this code with:
 $ clojure examples/search.clj <insert your API key here> Kenway
 ```
 
+### Scala
+
+As with Clojure, you can call this library from Scala.  The following code does the same as the above two examples.
+
+```scala
+// Person Search example in Scala.
+// Owain Kenway
+
+package examples
+
+import uclapi.UCLApiConnection
+import uclapi.Person
+
+object search extends App {
+
+    if (args.length != 2) {
+        Console.err.println("Run with API key + query as arguments.")
+        System.exit(1)
+    }
+
+    val apikey = args(0)
+    val query = args(1)
+
+    val results = Person.searchAPI(new UCLApiConnection(apikey), query)
+
+    for (i <- 0 to (results.length - 1))
+        println(results(i).toString())
+}
+```
+
+You can compile this code with `scalac` and then run it.
+
+```none
+$ scalac examples/search.scala
+$ scala examples.search <insert your API key here> Kenway
+```
+
+### Jython
+
+And of course you can use Jython:
+
+```python
+# UCL API example in Jython
+# This example searches for people.
+
+# Owain Kenway
+
+import uclapi.UCLApiConnection
+import uclapi.Person
+
+import sys
+
+# Get our key + query.
+if len(sys.argv) != 3:
+	sys.exit("Call with query as argument")
+
+key = sys.argv[1]
+query = sys.argv[2]
+
+# Make our connection and get our results.
+conn = uclapi.UCLApiConnection(key)
+results = uclapi.Person.searchAPI(conn, query)
+
+# Print them out.
+for a in results:
+	print(a.toString())
+```
+
+And run it through `jython`.
+
+```none
+$ jython examples/search.py <insert your API key here> Kenway
+```
+
 Questions/Comments?
 -------------------
 
