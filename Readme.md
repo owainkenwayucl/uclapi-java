@@ -17,9 +17,9 @@ Installation:
 * An API key (instructions on [UCL-API](https://uclapi.com/) website)
 * JSON.simple (https://code.google.com/archive/p/json-simple/ or Ubuntu package `libjson-simple-java` to parse JSON objects.  If you only want to use `uclapi.UCLApiConnection` you don't need this, but will need to build that class manually in the normal way.)
 
-Clone the repository and run `make`.
+Clone the repository and run `make`.  By default this builds `.class` files in the `uclapi` directory but you can also build a `.jar` file by running `make jar` and JavaDoc documentation by running `make javadoc` or everything by running `make all`.
 
-Add the directory to your java class path. <- **IMPORTANT**
+Add the directory (or `.jar` if you built it) to your java class path. <- **IMPORTANT**
 
 You can then write a simple example program (`examples/search.java`) to do a query, as per the examples on the UCL API website:
 
