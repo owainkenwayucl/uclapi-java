@@ -1,5 +1,5 @@
-; Person Search example in Scala.
-; Owain Kenway
+// Person Search example in Scala.
+// Owain Kenway
 
 package examples
 
