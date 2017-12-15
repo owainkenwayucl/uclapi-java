@@ -4,7 +4,7 @@ default: uclapi/UCLApiConnection.class uclapi/Room.class uclapi/Person.class ucl
 
 all: uclapi/UCLApiConnection.class uclapi/Room.class uclapi/Person.class uclapi/Equipment.class uclapi/Booking.class Makefile jar javadoc
 
-javadoc: doc/index.html
+javadoc: doc/javadoc/index.html
 
 jar: uclapi.jar
 
@@ -26,8 +26,8 @@ uclapi/Equipment.class: uclapi/Equipment.java Makefile
 uclapi/Booking.class: uclapi/Booking.java Makefile
 	$(JAVAC) uclapi/Booking.java
 
-doc/index.html: uclapi/Room.java uclapi/Person.java uclapi/Equipment.java uclapi/Booking.java Makefile
-	mkdir -p doc; cd doc; javadoc uclapi
+doc/javadoc/index.html: uclapi/Room.java uclapi/Person.java uclapi/Equipment.java uclapi/Booking.java Makefile
+	mkdir -p doc/javadoc; cd doc/javadoc; javadoc uclapi
 
 clean:
-	rm -rf uclapi/*.class *.class trash/*.class examples/*.class doc *.jar
+	rm -rf uclapi/*.class *.class trash/*.class examples/*.class doc/javadoc *.jar
