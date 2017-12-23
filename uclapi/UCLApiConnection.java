@@ -19,6 +19,12 @@ public class UCLApiConnection {
     // URL base, public so for testing purpose you can modify it but generally don't!
     public String UCLApiEndpoint = new String("https://uclapi.com/");
 
+    // Global variable to set whether we want to quit on exception.
+    public static boolean ExitOnException = true;
+
+    // Strip out key from error message.
+    public boolean ProtectKey = true;
+
     // Constants (e.g. endpoints)
     public static final String RoomBookingsEP = "roombookings/bookings";
     public static final String RoomRoomsEP = "roombookings/rooms";
@@ -81,8 +87,14 @@ public class UCLApiConnection {
 
         } catch(Exception e) {
             // Annoyingly we don't get our Error response, just a 403 exception which is less helpful.
-            System.err.println(e.toString());
-            System.exit(1);
+            String error = new String(e.toString());
+            if (this.ProtectKey) {
+                error = new String(error.replace(this.APIKey, "<API KEY HIDDEN>"));
+            }
+            System.err.println(error);
+            if (uclapi.UCLApiConnection.ExitOnException) {
+                System.exit(1);
+            }
         }
 
         // If we get here something has gone very wrong...

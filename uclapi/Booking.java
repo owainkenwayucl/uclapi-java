@@ -84,7 +84,9 @@ public class Booking {
         } catch(Exception e) {
             System.err.println(e.toString());
             e.printStackTrace(System.err);
-            System.exit(2);
+            if (uclapi.UCLApiConnection.ExitOnException) {
+                System.exit(2);
+            }
         }
 
     }
@@ -138,7 +140,9 @@ public class Booking {
 
         } catch (Exception e){
             System.err.println(e.toString());
-            System.exit(5);
+            if (uclapi.UCLApiConnection.ExitOnException) {
+                System.exit(5);
+        }
         }
         return new Booking[0];
     }
@@ -285,7 +289,7 @@ public class Booking {
         return this.weeknumber;
     }
 
-        /**
+    /**
      * Get room name.
      * @return the name of the room.
      */

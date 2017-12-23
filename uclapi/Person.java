@@ -42,7 +42,9 @@ public class Person {
             this.email = new String(((String)jsonperson.get("email")));
         } catch(Exception e) {
             System.err.println(e.toString());
-            System.exit(2);
+            if (uclapi.UCLApiConnection.ExitOnException) {
+                System.exit(2);
+            }
         }
     }
 
@@ -74,7 +76,9 @@ public class Person {
             return retval;
         } catch (Exception e){
             System.err.println(e.toString());
-            System.exit(5);
+            if (uclapi.UCLApiConnection.ExitOnException) {
+                System.exit(5);
+            }
         }
         return new Person[0];
     }

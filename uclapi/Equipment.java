@@ -45,7 +45,9 @@ public class Equipment {
 
         } catch(Exception e) {
             System.err.println(e.toString());
-            System.exit(2);
+            if (uclapi.UCLApiConnection.ExitOnException) {
+                System.exit(2);
+            }
         }
 
     }
@@ -79,7 +81,9 @@ public class Equipment {
 
         } catch (Exception e){
             System.err.println(e.toString());
-            System.exit(5);
+            if (uclapi.UCLApiConnection.ExitOnException) {
+                System.exit(5);
+            }
         }
         return new Equipment[0];
     }
