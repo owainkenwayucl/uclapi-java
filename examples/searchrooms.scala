@@ -1,4 +1,4 @@
-// Person Search example in Scala.
+// Room Search example in Scala.
 // Owain Kenway
 
 package examples
