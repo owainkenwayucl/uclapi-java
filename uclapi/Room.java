@@ -57,23 +57,62 @@ public class Room {
             JSONObject jcoordinates = (JSONObject)jlocation.get("coordinates");
             JSONArray jaddress = (JSONArray)jlocation.get("address");
 
-            this.roomname = new String(((String)jsonroom.get("roomname")));
-            this.roomid = new String(((String)jsonroom.get("roomid")));
-            this.siteid = new String(((String)jsonroom.get("siteid")));
-            this.sitename = new String(((String)jsonroom.get("sitename")));
-            this.capacity = ((long)jsonroom.get("capacity"));
-            this.classification = new String(((String)jsonroom.get("classification")));
-            this.automated = new String(((String)jsonroom.get("automated")));
-
-            this.latitude = Double.parseDouble((String)jcoordinates.get("lat"));
-            this.longitude = Double.parseDouble((String)jcoordinates.get("lng"));
-
-            this.address = new String[address_size];
-            for (int i = 0; i < address_size; i++) {
-                this.address[i] = new String((String)jaddress.get(i));
+            try {
+                this.roomname = new String(((String)jsonroom.get("roomname")));
+            } catch(Exception e) {
+                this.roomname = "";
             }
-
+            try {
+                this.roomid = new String(((String)jsonroom.get("roomid")));
+            } catch(Exception e) {
+                this.roomid = "";
+            }
+            try {
+                this.siteid = new String(((String)jsonroom.get("siteid")));
+            } catch(Exception e) {
+                this.siteid = "";
+            }
+            try {
+                this.sitename = new String(((String)jsonroom.get("sitename")));
+            } catch(Exception e) {
+                this.sitename = "";
+            }
+            try {
+                this.capacity = ((long)jsonroom.get("capacity"));
+            } catch(Exception e) {
+                this.capacity = 0;
+            }
+            try {
+                this.classification = new String(((String)jsonroom.get("classification")));
+            } catch(Exception e) {
+                this.classification = "";
+            }
+            try {
+                this.automated = new String(((String)jsonroom.get("automated")));
+            } catch(Exception e) {
+                this.automated = "";
+            }
+            try {
+                this.latitude = Double.parseDouble((String)jcoordinates.get("lat"));
+                this.longitude = Double.parseDouble((String)jcoordinates.get("lng"));
+            } catch(Exception e) {
+                this.latitude = 0;
+                this.longitude = 0;
+            }
+            try {
+                this.address = new String[address_size];
+                for (int i = 0; i < address_size; i++) {
+                    this.address[i] = new String((String)jaddress.get(i));
+                }
+            } catch(Exception e) {
+                this.address = new String[address_size];            
+                for (int i = 0; i < address_size; i++) {
+                    this.address[i] = "";
+                }
+            }
+            
         } catch(Exception e) {
+            e.printStackTrace();
             System.err.println(e.toString());
             if (uclapi.UCLApiConnection.ExitOnException) {
                 System.exit(2);
