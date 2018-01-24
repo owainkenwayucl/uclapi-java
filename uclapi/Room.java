@@ -112,7 +112,6 @@ public class Room {
             }
             
         } catch(Exception e) {
-            e.printStackTrace();
             System.err.println(e.toString());
             if (uclapi.UCLApiConnection.ExitOnException) {
                 System.exit(2);
