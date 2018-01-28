@@ -6,6 +6,7 @@
 package uclapi;
 
 import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 
 public class JSONWrapper {
 
@@ -16,6 +17,20 @@ public class JSONWrapper {
      * @param field the field.
      */
     public static String safeGetString(JSONObject item, String field) {
+        try {
+            return new String(((String)item.get(field)));
+        } catch(NullPointerException e) {
+            return new String("");
+        }
+    }
+
+    /**
+     * Use JSON.simple to get a value out of a JSONArray, returning "" if
+     * the field is empty or does not exist.
+     * @param item the array.
+     * @param field the field.
+     */
+    public static String safeGetString(JSONArray item, int field) {
         try {
             return new String(((String)item.get(field)));
         } catch(NullPointerException e) {
