@@ -5,6 +5,7 @@
 package uclapi;
 
 import uclapi.UCLApiConnection;
+import uclapi.JSONWrapper;
 
 import java.lang.Math;
 import java.util.Hashtable;
@@ -39,9 +40,9 @@ public class Equipment {
     public Equipment(JSONObject jsonequipment) {
         try {
 
-            this.type= new String(((String)jsonequipment.get("type")));
-            this.description = new String(((String)jsonequipment.get("description")));
-            this.number= ((long)jsonequipment.get("units"));
+            this.type=JSONWrapper.safeGetString(jsonequipment, "type");
+            this.description=JSONWrapper.safeGetString(jsonequipment, "description");
+            this.number=JSONWrapper.safeGetLong(jsonequipment, "units");
 
         } catch(Exception e) {
             System.err.println(e.toString());
