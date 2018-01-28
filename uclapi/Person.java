@@ -4,6 +4,9 @@
  */
 package uclapi;
 
+import uclapi.UCLApiConnection;
+import uclapi.JSONWrapper;
+
 import java.lang.Math;
 import java.util.Hashtable;
 
@@ -36,10 +39,10 @@ public class Person {
      */
     public Person(JSONObject jsonperson) {
         try {
-            this.name = new String(((String)jsonperson.get("name")));
-            this.status = new String(((String)jsonperson.get("status")));
-            this.department = new String(((String)jsonperson.get("department")));
-            this.email = new String(((String)jsonperson.get("email")));
+            this.name = JSONWrapper.safeGetString(jsonperson, "name");
+            this.status = JSONWrapper.safeGetString(jsonperson, "status");
+            this.department = JSONWrapper.safeGetString(jsonperson, "department");
+            this.email = JSONWrapper.safeGetString(jsonperson, "email");
         } catch(Exception e) {
             System.err.println(e.toString());
             if (uclapi.UCLApiConnection.ExitOnException) {
