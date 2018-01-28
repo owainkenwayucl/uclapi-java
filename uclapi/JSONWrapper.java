@@ -60,7 +60,12 @@ public class JSONWrapper {
      */
     public static double safeGetDouble(JSONObject item, String field) {
         try {
-            return  Double.parseDouble((String)item.get(field));
+            // Sometimes values we want as doubles are Strings.
+            try {
+                return Double.parseDouble((String)item.get(field));
+            } catch (ClassCastException c) {
+                return ((double)item.get(field));
+            }
         } catch(NullPointerException e) {
             return 0.0d;
         }

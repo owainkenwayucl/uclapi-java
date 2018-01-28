@@ -5,6 +5,7 @@
 package uclapi;
 
 import uclapi.UCLApiConnection;
+import uclapi.JSONWrapper;
 import uclapi.Room;
 
 import java.lang.Math;
@@ -56,30 +57,16 @@ public class Booking {
      */
     public Booking(JSONObject jsonbooking) {
         try {
-            this.roomname = new String(((String)jsonbooking.get("roomname")));
-            this.roomid = new String(((String)jsonbooking.get("roomid")));
-            this.siteid = new String(((String)jsonbooking.get("siteid")));
-            this.endtime = new String(((String)jsonbooking.get("end_time")));
-            this.starttime = new String(((String)jsonbooking.get("start_time")));
-
-            // These fields appear to be able to be null...
-            try {
-                this.phone = new String(((String)jsonbooking.get("phone")));                
-            } catch (NullPointerException e) {
-                this.phone = "";
-            }
-            try {
-                this.description = new String(((String)jsonbooking.get("description")));
-            } catch (NullPointerException e) {
-                this.description = "";
-            }
-            try {
-                this.contact = new String(((String)jsonbooking.get("contact")));
-            } catch (NullPointerException e) {
-                this.contact = "";
-            }
-            this.slotid = ((long)jsonbooking.get("slotid"));            
-            this.weeknumber = (double)jsonbooking.get("weeknumber");
+            this.roomname = JSONWrapper.safeGetString(jsonbooking, "roomname");
+            this.roomid = JSONWrapper.safeGetString(jsonbooking, "roomid");
+            this.siteid = JSONWrapper.safeGetString(jsonbooking, "siteid");
+            this.endtime = JSONWrapper.safeGetString(jsonbooking, "end_time");
+            this.starttime = JSONWrapper.safeGetString(jsonbooking, "start_time");
+            this.phone = JSONWrapper.safeGetString(jsonbooking, "phone");                
+            this.description = JSONWrapper.safeGetString(jsonbooking, "description");
+            this.contact = JSONWrapper.safeGetString(jsonbooking, "contact");
+            this.slotid = JSONWrapper.safeGetLong(jsonbooking, "slotid");            
+            this.weeknumber = JSONWrapper.safeGetDouble(jsonbooking, "weeknumber");
 
         } catch(Exception e) {
             System.err.println(e.toString());
