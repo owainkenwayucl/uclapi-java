@@ -1,4 +1,4 @@
-; Room Search example in Clojure
+; Booking Search example in Clojure
 ; Owain Kenway
 
 ; Make sure we have the right number of command line arguments.
