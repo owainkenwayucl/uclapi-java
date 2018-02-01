@@ -55,7 +55,6 @@ public class Room {
     public Room(JSONObject jsonroom) {
         try {
             JSONObject jlocation = (JSONObject)jsonroom.get("location");
-            JSONObject jcoordinates = (JSONObject)jlocation.get("coordinates");
             JSONArray jaddress = (JSONArray)jlocation.get("address");
 
             this.roomname = JSONWrapper.safeGetString(jsonroom, "roomname");
@@ -65,8 +64,16 @@ public class Room {
             this.capacity = JSONWrapper.safeGetLong(jsonroom, "capacity");
             this.classification = JSONWrapper.safeGetString(jsonroom, "classification");
             this.automated = JSONWrapper.safeGetString(jsonroom, "automated");
-            this.latitude = JSONWrapper.safeGetDouble(jcoordinates, "lat");
-            this.longitude = JSONWrapper.safeGetDouble(jcoordinates, "lng");
+
+            // When searching for free rooms you don't necessarily get co-ordinates according to the docs?
+            try {
+                JSONObject jcoordinates = (JSONObject)jlocation.get("coordinates");
+                this.latitude = JSONWrapper.safeGetDouble(jcoordinates, "lat");
+                this.longitude = JSONWrapper.safeGetDouble(jcoordinates, "lng");
+            } catch (NullPointerException n) {
+                this.latitude = 0.0d;
+                this.longitude = 0.0d;
+            }
             this.address = new String[address_size];
             for (int i = 0; i < address_size; i++) {
                 this.address[i] = JSONWrapper.safeGetString(jaddress, i);
@@ -92,6 +99,16 @@ public class Room {
     }
 
     /**
+     * Perform a query on a given UCL API connection and return an array of free rooms.
+     * @param conn UCLApiConnection
+     * @param params hashtable of query parameters
+     * @return Array of Rooms
+     */
+    public static Room[] searchAPIForFreeRooms(UCLApiConnection conn, Hashtable<String, String> params) {
+        return Room.searchAPI(conn, UCLApiConnection.RoomFreeEP, params, "free_rooms");
+    }
+
+    /**
      * Perform a query on a given UCL API connection and return an array of rooms.
      * @param conn UCLApiConnection
      * @param endpoint the API path
@@ -99,13 +116,25 @@ public class Room {
      * @return Array of Rooms
      */
     public static Room[] searchAPI(UCLApiConnection conn, String endpoint, Hashtable<String, String> params) {
+        return Room.searchAPI(conn, endpoint, params, "rooms");
+    }
+
+    /**
+     * Perform a query on a given UCL API connection and return an array of rooms.
+     * @param conn UCLApiConnection
+     * @param endpoint the API path
+     * @param params hashtable of query parameters
+     * @param responseTableName name of table of results in JSON output.
+     * @return Array of Rooms
+     */
+    public static Room[] searchAPI(UCLApiConnection conn, String endpoint, Hashtable<String, String> params, String responseTableName) {
         String response = conn.queryAPI(endpoint, params);
 
         try {
             JSONParser p = new JSONParser();
             JSONObject responseObject = (JSONObject)p.parse(response);
 
-            JSONArray rooms = (JSONArray)responseObject.get("rooms");
+            JSONArray rooms = (JSONArray)responseObject.get(responseTableName);
             int nRooms = rooms.size();
             Room[] retval = new Room[nRooms];
 
