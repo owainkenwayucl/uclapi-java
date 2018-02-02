@@ -252,7 +252,7 @@ public class Room {
 
     /**
      * Get capacity.
-     * @return the capactiy of the site.
+     * @return the capacity of the room.
      */
     public long getCapacity() {
         return this.capacity;

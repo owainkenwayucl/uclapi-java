@@ -46,7 +46,11 @@ public class JSONWrapper {
      */
     public static long safeGetLong(JSONObject item, String field) {
         try {
-            return ((long)item.get(field));
+            try {
+                return ((long)item.get(field));
+            } catch (ClassCastException c) {
+                return Long.parseLong((String)item.get(field));
+            }
         } catch(NullPointerException e) {
             return 0;
         }
@@ -60,11 +64,10 @@ public class JSONWrapper {
      */
     public static double safeGetDouble(JSONObject item, String field) {
         try {
-            // Sometimes values we want as doubles are Strings.
             try {
-                return Double.parseDouble((String)item.get(field));
-            } catch (ClassCastException c) {
                 return ((double)item.get(field));
+            } catch (ClassCastException c) {
+                return Double.parseDouble((String)item.get(field));
             }
         } catch(NullPointerException e) {
             return 0.0d;

@@ -31,6 +31,7 @@ public class UCLApiConnection {
     public static final String RoomFreeEP = "roombookings/freerooms";
     public static final String RoomEquipmentEP = "roombookings/equipment";
     public static final String SearchPeopleEP = "search/people";
+    public static final String DesktopFreeEP = "resources/desktops";
 
     /**
      * Basic constructor, sets API key for this connection.
