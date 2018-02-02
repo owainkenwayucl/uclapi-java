@@ -15,6 +15,7 @@ public class JSONWrapper {
      * the field is empty or does not exist.
      * @param item the object.
      * @param field the field.
+     * @return the contents of the field.
      */
     public static String safeGetString(JSONObject item, String field) {
         try {
@@ -29,6 +30,7 @@ public class JSONWrapper {
      * the field is empty or does not exist.
      * @param item the array.
      * @param field the field.
+     * @return the contents of the field.
      */
     public static String safeGetString(JSONArray item, int field) {
         try {
@@ -43,6 +45,7 @@ public class JSONWrapper {
      * the field is empty or does not exist.
      * @param item the object.
      * @param field the field.
+     * @return a long representation of that field.
      */
     public static long safeGetLong(JSONObject item, String field) {
         try {
@@ -61,6 +64,7 @@ public class JSONWrapper {
      * the field is empty or does not exist.
      * @param item the object.
      * @param field the field.
+     * @return a double representation of that field.
      */
     public static double safeGetDouble(JSONObject item, String field) {
         try {
