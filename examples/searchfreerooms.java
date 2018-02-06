@@ -1,5 +1,4 @@
 // UCL API example in Java - search for free rooms.
-// This example queries the roombookings/rooms endpoint and prints results.
 //
 // Owain Kenway
 
