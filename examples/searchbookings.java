@@ -6,7 +6,6 @@
 package examples;
 
 import uclapi.UCLApiConnection;
-import uclapi.Room;
 import uclapi.Booking;
 
 import java.util.Hashtable;
