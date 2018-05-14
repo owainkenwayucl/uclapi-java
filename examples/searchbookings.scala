@@ -13,7 +13,7 @@ import java.util.Hashtable
 object searchbookings extends App {
 
     if (args.length != 2) {
-        Console.err.println("Run with API key + siteid + roomid as arguments.")
+        Console.err.println("Run with API key + date as arguments.")
         System.exit(1)
     }
 
