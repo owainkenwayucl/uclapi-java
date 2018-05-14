@@ -1,4 +1,4 @@
-// UCL API example in Java
+// UCL API example in Scala.
 // This example searchs for equipment in a room.
 //
 // Owain Kenway
