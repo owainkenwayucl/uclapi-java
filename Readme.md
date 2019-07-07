@@ -92,11 +92,14 @@ Since Clojure can access Java classes, you also call this library from Clojure. 
 (println (clojure.string/join "\n" (Person/searchAPI (UCLApiConnection. token) query)))
 ```
 
-You can then run this code with:
+If you have the Debian/Ubuntu `clojure wrappers` you can then run this code with:
 
 ```none
 $ clojure examples/search.clj <insert your API key here> Kenway
 ```
+
+Alternative wrappers may be found here: https://github.com/owainkenwayucl/clojure-wrappers
+
 
 ### Scala
 
