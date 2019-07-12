@@ -15,7 +15,9 @@ Installation:
 * Java JDK (tested on 8, should work on 7)
 * GNU Make (automated build)
 * An API key (instructions on [UCL-API](https://uclapi.com/) website)
-* JSON.simple (https://code.google.com/archive/p/json-simple/ or Ubuntu/Debian package `libjson-simple-java` to parse JSON objects.  If you only want to use `uclapi.UCLApiConnection` you don't need this, but will need to build that class manually in the normal way.)
+* JSON.simple (https://code.google.com/archive/p/json-simple/ or Ubuntu/Debian package `libjson-simple-java` to parse JSON objects.  If you only want to use `uclapi.UCLApiConnection` you don't need this, but will need to build that class manually in the normal way.)  
+
+*Note* - the ownership of JSON.simple has recently changed and the new developers are changing the API.  For now you should use version 2.x which is backwards compatible with version 1.x but will get deprecation warnings when you compile.  I am looking at migrating this code to the new API.
 
 Clone the repository and run `make`.  By default this builds `.class` files in the `uclapi` directory but you can also build a `.jar` file by running `make jar` and JavaDoc documentation by running `make javadoc` or everything by running `make all`.
 
